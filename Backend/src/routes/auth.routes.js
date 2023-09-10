@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
     login,
-    // logout,
+    logout,
     register
     // verifyToken,
 } from "../controllers/auth.controller.js";
@@ -13,6 +13,7 @@ const router = Router();
 // router.post("/api/register", register); // esta es una de las formas de modificar las rutas
 router.post("/register", register);
 router.post("/login", login);
+router.post("/logout", logout);
 
 // router.post("/register", validateSchema(registerSchema), register);
 // router.post("/login", validateSchema(loginSchema), login);

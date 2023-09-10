@@ -23,7 +23,7 @@ export const register = async (req, res) => {
 
         // res.json(userSaved); // aqui se envia toda la info del usuario, inclusive la contraseña, como respuesta al frontend
         const token = await createAccessToken({ id: userSaved._id });
-        res.cookie('token', token); // es un metodo de express para establecer una cookie dentro, se le llama 'token' y obtiene el valor de token que se genero en jwt.
+        res.cookie('token', token); // es un metodo de express para establecer una cookie dentro, se le llama 'token' y obtiene el valor de token que se genero en createAccesToken con jsonwebtoken jwt.
 
         // res.json({
         //     message: "Usuario creado Satisfactoriamente."
@@ -45,7 +45,42 @@ export const register = async (req, res) => {
 
 };
 
-export const login = (req, res) => {
-    console.log(req.body);
-    res.send("Registrando...");
+export const login = async (req, res) => {
+    // console.log(req.body);
+    const { email, password } = req.body; // aqui estamos recibiendo lo del request body que envia el usuario e igualamos el objeto para extraer las variables.
+    // console.log(email, password, username); 1) entra el json del request body
+
+    try {
+        const userFound = await User.findOne({ email }) // busca en la bd de mongo si existe ya el usuario con ese email.
+        if (!userFound) return res.status(400).json({ message: "Usuario no encontrado" });
+
+        const isMatch = await bcrypt.compare(password, userFound.password); // compara el usuario pasword puesto en el form con el usuario password de la bd
+
+        if (!isMatch) return res.status(400).json({ message: "Incorrect password" });
+
+        const token = await createAccessToken({ id: userFound._id });
+        res.cookie('token', token); // es un metodo de express para establecer una cookie dentro, se le llama 'token' y obtiene el valor de token que se genero en createAccesToken de jsonwebtoken.
+
+        res.json({
+            id: userFound._id,
+            username: userFound.username,
+            email: userFound.email,
+            createdAt: userFound.createdAt,
+            updatedAt: userFound.updatedAt
+        })
+    } catch (error) {
+        // console.log(error);
+        res.status(500).json({
+            message: error.message
+        });
+    }
+
+};
+
+export const logout = (req, res) => { // aqui estamos cambiando el tiempo de validez del token de autenticacion, por eso desloguea al usuario
+    res.cookie('token', '',
+        {
+            expires: new Date(0)
+        })
+    return res.sendStatus(200);
 }
