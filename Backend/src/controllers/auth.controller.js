@@ -84,3 +84,20 @@ export const logout = (req, res) => { // aqui estamos cambiando el tiempo de val
         })
     return res.sendStatus(200);
 }
+
+export const profile = async (req, res) => {
+    // console.log(req.user); // este req.user fue el que guardamos en validateToken.js
+    const userFound = await User.findById(req.user.id); // este comando busca en la base de datos de mongo el usuario por su id y retorna todos los datos.
+    // es necesario poner el await para que espere a que traiga los datos del usuario antes de continuar
+
+    if (!userFound) return res.status(400).json({ message: "Usuario no encontrado en la base de datos de mongo" });
+
+    return res.json({
+        id: userFound._id,
+        username: userFound.username,
+        email: userFound.email,
+        createdAt: userFound.createdAt,
+        updatedAt: userFound.updatedAt
+    })
+    // res.send('profile');
+}// aqui se pueden extender los datos haciendo mas consultas incluso a mas backend
