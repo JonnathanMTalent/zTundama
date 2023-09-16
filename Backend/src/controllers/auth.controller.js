@@ -6,16 +6,28 @@ import { createAccessToken } from '../libs/jwt.js';
 
 export const register = async (req, res) => {
     // console.log(req.body);
-    const { username, email, password } = req.body; // aqui estamos recibiendo lo del request body que envia el usuario e igualamos el objeto para extraer las variables.
+    const { apellidos, cedula, celular, citas, email, fecha, nombres, password, username } = req.body; // aqui estamos recibiendo lo del request body que envia el usuario e igualamos el objeto para extraer las variables.
     // console.log(email, password, username); 1) entra el json del request body
 
     try {
+
+        const userFound = await User.findOne({ email }); // con esta linea buscamos en la base de datos si ya existia ese correo registrado
+        // if(userFound)return res.status(400).json({message:"El correo ya estaba registrado."})
+        if (userFound) return res.status(400).json({ message: ["El correo ya estaba registrado."] });
+        // if (userFound) return res.status(400).json(["El correo ya estaba registrado."]);
+
         const passwordHash = await bcrypt.hash(password, 10); // esto encripta el password ejecutando el comando 10 veces  2) se encripta el hash
 
         const newUser = new User({// en este objeto User hacemos el registro en la base de datos de  mongo haciendo uso del esquema user.model 3)se genera un nuevo usuario en bd
-            username,
+            apellidos,
+            cedula,
+            celular,
+            citas,
             email,
-            password: passwordHash
+            fecha,
+            nombres,
+            password: passwordHash,
+            username
         });
         // console.log(newUser);
         // res.send("Registrando...");
@@ -31,6 +43,13 @@ export const register = async (req, res) => {
 
         res.json({
             id: userSaved._id,
+            apellidos: userSaved.apellidos,
+            cedula: userSaved.cedula,
+            celular: userSaved.celular,
+            citas: userSaved.citas,
+            email: userSaved.email,
+            fecha: userSaved.fecha,
+            nombres: userSaved.nombres,
             username: userSaved.username,
             email: userSaved.email,
             createdAt: userSaved.createdAt,

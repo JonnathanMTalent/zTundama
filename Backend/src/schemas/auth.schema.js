@@ -8,7 +8,7 @@ import { z } from 'zod'; // este z nos permite entregar los tipos de datos
 export const registerSchema = z.object({
     username: z.string({
         required_error: 'El nombre de usuario es requerido'
-    }).min(5, 'el usuario tiene que tener minimo 5 caracteres'), // aqui podemos usar otras validaciones como max, min , etc.
+    }).min(1, 'el usuario tiene que tener minimo 1 caracteres'), // aqui podemos usar otras validaciones como max, min , etc.
     email: z.string({
         required_error: 'El Email es requerido'
     }).email({

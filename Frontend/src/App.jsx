@@ -1,6 +1,7 @@
-import React from "react";
+// import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { AuthProvider } from "./Components/context/AuthContext.jsx";
 
 import Index from "../src/Components/screens/Index.jsx";
 import LoginForm from "./Components/screens/LoginForm.jsx";
@@ -15,26 +16,27 @@ import ContactForm from "./Components/crud/ContactForm.jsx";
 
 import CrudApi from "./Components/crud/CrudApi";
 
+// el AuthProvider es el contexto.
 const App = () => {
   return (
     <div className="App">
-      <Router>
-        {/* <Ensayo></Ensayo> */}
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/registro" element={<RegistroForm />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/acercade" element={<Acercade />} />
-          <Route path="/servicios" element={<Servicios />} />
-          <Route path="/agendaCitas" element={<AgendaCitas />} />
-          <Route path="/cuentaUsuario" element={<CuentaUsuario />} />
-          <Route path="/inicio" element={<Inicio />} />
-          <Route path="/editarCitas" element={<EditarCitas />} />
-
-          <Route path="/contactForm" element={<ContactForm />} />
-          <Route path="/crudApi" element={<CrudApi />} />
-        </Routes>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/registro" element={<RegistroForm />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/acercade" element={<Acercade />} />
+            <Route path="/servicios" element={<Servicios />} />
+            <Route path="/agendaCitas" element={<AgendaCitas />} />
+            <Route path="/cuentaUsuario" element={<CuentaUsuario />} />
+            <Route path="/inicio" element={<Inicio />} />
+            <Route path="/editarCitas" element={<EditarCitas />} />
+            <Route path="/contactForm" element={<ContactForm />} />
+            <Route path="/crudApi" element={<CrudApi />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
     </div>
   );
 };

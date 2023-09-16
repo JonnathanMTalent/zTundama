@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 import "../styles/registro.css";
+// import { registerRequest } from "../../api/auth";  // se usa en AuthContext.jsx
 import { useNavigate } from "react-router-dom"; // Importa useHistory para la redirección
+import { useAuth } from "../context/AuthContext.jsx";
+import { useEffect } from "react";
+import Message from "../crud/Message";
+
 function RegistroForm() {
+  const { signup, user, isAuthenticated, errors: RegisterErrors } = useAuth(); // errors fue renombrado con : para evitar conflictos en otras secciones.
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate(); // Obtiene la instancia de history para la redirección
   const handleEyeIconClick = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleSubmit = (e) => {
+  console.log(user);
+
+  useEffect(() => {
+    // redirige si el usuario ya esta auntenticado.
+    if (isAuthenticated) navigate("/inicio");
+  }, [isAuthenticated]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
@@ -20,21 +33,26 @@ function RegistroForm() {
     if (guardar) {
       const objDatosRegistro = Object.fromEntries(formData.entries());
       objDatosRegistro.citas = [];
-      console.log(objDatosRegistro);
+      //   console.log(objDatosRegistro);
       alert(`Datos ingresados correctamente:
         Nombre: ${objDatosRegistro.nombres}
         Apellidos: ${objDatosRegistro.apellidos}
         Cédula:${objDatosRegistro.cedula}
         Fecha: ${objDatosRegistro.fecha}
-        Correo: ${objDatosRegistro.correo}
+        Correo: ${objDatosRegistro.email}
         Celular:${objDatosRegistro.celular}
-        Usuario:${objDatosRegistro.usuario}
+        Usuario:${objDatosRegistro.username}
         citas:${objDatosRegistro.citas};
         `);
       // Convertir el objeto a JSON y guardar en el almacenamiento local
       localStorage.setItem("DatosRegistro", JSON.stringify(objDatosRegistro));
       // Redirigir a LoginbiForm después de guardar los datos
-      navigate("/login"); // Cambia '/login'
+      //   const res = await registerRequest(objDatosRegistro); // se ejcuta en AuthContext.jsx
+      //   if (res) {
+      //     // console.log("esto es el res", res);
+      //     navigate("/login"); // Cambia '/login'
+      //   }
+      signup(objDatosRegistro); // aqui estamos haciendo el proceso de registro de usuario usando AuthContext.jsx
     } else {
       alert("No puede haber campos vacíos");
     }
@@ -47,6 +65,9 @@ function RegistroForm() {
         <div className="login-box">
           <h1>Datos Del paciente</h1>
           <br />
+          {RegisterErrors.map((error, i) => (
+            <Message msg={error} bgColor="red" key={i}></Message>
+          ))}
           <div className="panel-izquierdo">
             <label>Nombres </label>
             <input
@@ -76,7 +97,7 @@ function RegistroForm() {
               type="text"
               placeholder="ingrese su usuario de acceso"
               id="usuario"
-              name="usuario"
+              name="username"
             />
           </div>
           <div className="panel-derecho">
@@ -99,7 +120,7 @@ function RegistroForm() {
               type="text"
               placeholder="ingrese su correo Electronico"
               id="correo"
-              name="correo"
+              name="email"
             />
             {/* ¿Aqui empieza el eye icon */}
             <label>Contraseña</label>
@@ -114,7 +135,7 @@ function RegistroForm() {
               <input
                 type={passwordVisible ? "text" : "password"}
                 id="contrasena"
-                name="contrasena"
+                name="password"
                 placeholder="Contraseña"
               />
             </div>
