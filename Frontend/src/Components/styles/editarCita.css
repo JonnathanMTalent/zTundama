@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  padding: 1%;
+  background-image: url(../../../public/images/enfermera.jpg);
+  background-color: rgb(140, 205, 248);
+  background-size: cover;
+  font-family: sans-serif;
+  /* height: 100vh; */
+  height: 100%;
+  width: 100%;
+  max-width: 1920px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+header {
+  background: rgba(0, 0, 0, 0.582);
+  /* color: rgb(255, 255, 255); */
+  text-align: auto;
+  align-content: auto;
+  /*      height: 7em;
+    padding: 3px; */
+  height: 100%;
+  padding: 1%;
+  width: 100%;
+}
+header img {
+  height: 200px;
+  width: 200px;
+  align-items: flex-end;
+}
+nav {
+  width: 57%;
+  height: fit-content;
+  background: rgba(0, 0, 0, 0.411);
+  color: black;
+  margin: 1%;
+  padding: 5px;
+  /* height: 3em;  */
+  /* background: rgba(0, 0, 0, 0.623); */
+}
+
+footer {
+  background: rgba(0, 0, 0, 0.288);
+  /* color: rgb(255, 255, 255); */
+  height: 2em;
+}
+/*  aside{
+       background: rgb(125, 192, 189);
+       color: rgb(0, 0, 0);
+       height:5em;
+  
+   } */
+/*  #articulo1{/* 
+       background: rgb(241, 238, 238); */
+/*   color:rgb(15, 15, 15); */
+/* font-size: x-large; */
+/*  } */
+/*  .articulov{
+       /* font-family: 'Courier New', Courier, monospace; */
+/*   font-size: 27px;
+       background: rgb(255, 255, 255);
+   }  */
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  background-color: rgb(160, 172, 163);
+  border: 1px solid black;
+  padding: 8px;
+  color: white;
+}
+
+th {
+  background-color: #46acfa;
+  color: white;
+}
+
+td.available {
+  background-color: #5d76f4;
+  cursor: pointer;
+  color: black;
+}
+
+td.unavailable {
+  background-color: #887b7b;
+  color: black;
+}
+
+@media only screen and (max-width: 1000px),
+  (min-device-width: 1000px) and (max-device-width: 1024px) {
+  /* forzando la tabla a no portarse como tabla*/
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Ocultar encabezados de tabla (pero no mostrar: ninguno;, por accesibilidad) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin: 0 0 1rem 0;
+  }
+
+  tr:nth-child(odd) {
+    background: #ccc;
+  }
+
+  td {
+    /* Compórtamiento como una "fila" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    font-size: 20px;
+    /* padding-top: 20px; */
+    height: 40px;
+    /* text-align: end; */
+  }
+
+  td:before {
+    /* Ahora como un encabezado de tabla*/
+    position: absolute;
+    /* Los valores superior/izquierdo imitan el relleno*/
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    padding-top: 0px;
+    /* padding-bottom: 20px; */
+    white-space: nowrap;
+    font-size: 20px;
+  }
+
+  /*
+		
+  aqui podemos nombrar el before de cada td
+		*/
+  td:nth-of-type(1):before {
+    content: "Lugar";
+  }
+  td:nth-of-type(2):before {
+    content: "Médico";
+  }
+  td:nth-of-type(3):before {
+    content: "Fecha";
+  }
+  td:nth-of-type(4):before {
+    content: "Hora";
+  }
+  td:nth-of-type(5):before {
+    content: "Opcion";
+  }
+}

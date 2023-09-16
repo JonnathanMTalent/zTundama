@@ -1,0 +1,47 @@
+body {
+  /* background-image: url(../imagenes/covid-19-trabajadores-salud-concepto-pandemia-hermosa-solicita-medico-asiatico-enfermera-matorrales-mostrando-gesto-corazon-sonriendo-cuidando-pacientes-amor-fondo-blanco_1258-84118.avif); */
+  background-image: url(../../../public/images/enfermera.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  /* margin-left: 130px; */
+  position: center;
+}
+h2 {
+  font-family: "Times New Roman", Times, serif;
+  display: flex;
+  justify-content: center;
+  margin-left: 0px;
+  position: center;
+  color: blue;
+}
+
+#video1 {
+  display: flex;
+  right: 1000px;
+  margin-left: 40%;
+  /* display: flex; */
+}
+
+.volver {
+  position: center;
+}
+
+@media screen and (max-width: 800px) {
+  #video1 {
+    display: flex;
+    right: 1000px;
+    margin-left: 40%;
+    /* display: flex; */
+  }
+
+  #video1 {
+    width: 300px;
+  }
+}

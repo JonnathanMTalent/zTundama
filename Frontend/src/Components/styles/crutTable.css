@@ -1,0 +1,22 @@
+.thead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 500px;
+  height: 100%;
+}
+.tbody {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  padding-left: 500px;
+  height: 100%;
+}
+
+.th {
+  padding-right: 100px;
+}
+
+hr {
+  border-color: black;
+}
