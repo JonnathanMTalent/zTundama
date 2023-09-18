@@ -14,12 +14,7 @@ function RegistroForm() {
     setPasswordVisible(!passwordVisible);
   };
 
-  console.log(user);
-
-  useEffect(() => {
-    // redirige si el usuario ya esta auntenticado.
-    if (isAuthenticated) navigate("/inicio");
-  }, [isAuthenticated]);
+  //   console.log(user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +28,7 @@ function RegistroForm() {
     if (guardar) {
       const objDatosRegistro = Object.fromEntries(formData.entries());
       objDatosRegistro.citas = [];
-      //   console.log(objDatosRegistro);
+      console.log(objDatosRegistro);
       alert(`Datos ingresados correctamente:
         Nombre: ${objDatosRegistro.nombres}
         Apellidos: ${objDatosRegistro.apellidos}
@@ -52,11 +47,20 @@ function RegistroForm() {
       //     // console.log("esto es el res", res);
       //     navigate("/login"); // Cambia '/login'
       //   }
+      //   console.log(RegisterErrors, RegisterErrors.length);
+      //   if (isAuthenticated) {
+      //     navigate("/login"); // Cambia '/login'
+      //   }
       signup(objDatosRegistro); // aqui estamos haciendo el proceso de registro de usuario usando AuthContext.jsx
     } else {
       alert("No puede haber campos vacíos");
     }
   };
+
+  useEffect(() => {
+    // redirige si el usuario ya esta auntenticado.
+    if (isAuthenticated) navigate("/inicio");
+  }, [isAuthenticated]);
 
   return (
     <body>

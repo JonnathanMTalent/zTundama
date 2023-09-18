@@ -71,11 +71,11 @@ export const login = async (req, res) => {
 
     try {
         const userFound = await User.findOne({ email }) // busca en la bd de mongo si existe ya el usuario con ese email.
-        if (!userFound) return res.status(400).json({ message: "Usuario no encontrado" });
+        if (!userFound) return res.status(400).json({ message: ["Usuario no encontrado"] });
 
         const isMatch = await bcrypt.compare(password, userFound.password); // compara el usuario pasword puesto en el form con el usuario password de la bd
 
-        if (!isMatch) return res.status(400).json({ message: "Incorrect password" });
+        if (!isMatch) return res.status(400).json({ message: ["Incorrect password"] });
 
         const token = await createAccessToken({ id: userFound._id });
         res.cookie('token', token); // es un metodo de express para establecer una cookie dentro, se le llama 'token' y obtiene el valor de token que se genero en createAccesToken de jsonwebtoken.
@@ -109,7 +109,7 @@ export const profile = async (req, res) => {
     const userFound = await User.findById(req.user.id); // este comando busca en la base de datos de mongo el usuario por su id y retorna todos los datos.
     // es necesario poner el await para que espere a que traiga los datos del usuario antes de continuar
 
-    if (!userFound) return res.status(400).json({ message: "Usuario no encontrado en la base de datos de mongo" });
+    if (!userFound) return res.status(400).json({ message: ["Usuario no encontrado en la base de datos de mongo"] });
 
     return res.json({
         id: userFound._id,
