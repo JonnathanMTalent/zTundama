@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthProvider } from "./Components/context/AuthContext.jsx";
+import ProtectedRoute from "./ProtectedRoute.jsx";
 
 import Index from "../src/Components/screens/Index.jsx";
 import LoginForm from "./Components/screens/LoginForm.jsx";
@@ -28,12 +29,14 @@ const App = () => {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/acercade" element={<Acercade />} />
             <Route path="/servicios" element={<Servicios />} />
-            <Route path="/agendaCitas" element={<AgendaCitas />} />
-            <Route path="/cuentaUsuario" element={<CuentaUsuario />} />
-            <Route path="/inicio" element={<Inicio />} />
-            <Route path="/editarCitas" element={<EditarCitas />} />
             <Route path="/contactForm" element={<ContactForm />} />
-            <Route path="/crudApi" element={<CrudApi />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/agendaCitas" element={<AgendaCitas />} />
+              <Route path="/cuentaUsuario" element={<CuentaUsuario />} />
+              <Route path="/inicio" element={<Inicio />} />
+              <Route path="/editarCitas" element={<EditarCitas />} />
+              <Route path="/crudApi" element={<CrudApi />} />
+            </Route>
           </Routes>
         </Router>
       </AuthProvider>

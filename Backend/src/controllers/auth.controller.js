@@ -1,8 +1,9 @@
 //¿en este archivo los console se ven en la terminal del visual usando la extencion morgan
 import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs'; // modulo para encryptar la contraseña del usuario.
-// import jwt from 'jsonwebtoken'; // genera un string que permite validar si ya habia habido autenticacion aqui usamos el modulo json webtoken 
+import jwt from 'jsonwebtoken'; // genera un string que permite validar si ya habia habido autenticacion aqui usamos el modulo json webtoken 
 import { createAccessToken } from '../libs/jwt.js';
+import { TOKEN_SECRET } from '../config.js';
 
 export const register = async (req, res) => {
     // console.log(req.body);
@@ -78,7 +79,16 @@ export const login = async (req, res) => {
         if (!isMatch) return res.status(400).json({ message: ["Incorrect password"] });
 
         const token = await createAccessToken({ id: userFound._id });
-        res.cookie('token', token); // es un metodo de express para establecer una cookie dentro, se le llama 'token' y obtiene el valor de token que se genero en createAccesToken de jsonwebtoken.
+
+        // es un metodo de express para establecer una cookie dentro, se le llama 'token' y obtiene el valor de token que se genero en createAccesToken de jsonwebtoken.
+        res.cookie('token', token);
+
+        //¿Estas lineas se ponene para que en el navegador salga informacion sobre la cookie.
+        // res.cookie('token', token, {
+        //     sameSite: 'none', // indica que la cookie no esta en el mismo dominio, porque estamos usando diferentes puertos para el back y el front
+        //     secure: 'true',  // esta propiedad va unida
+        //     httpOnly: false  // en false nos permite ver la cookie en el panel Aplication del navegador.
+        // });
 
         res.json({
             id: userFound._id,
@@ -120,3 +130,22 @@ export const profile = async (req, res) => {
     })
     // res.send('profile');
 }// aqui se pueden extender los datos haciendo mas consultas incluso a mas backend
+
+
+export const verifyToken = async (req, res) => {
+    const { token } = req.cookies
+    if (!token) return res.status(401).json({ message: "No esta autorizado. No hay token" }); // Esto indicaria que no habia token
+
+    jwt.verify(token, TOKEN_SECRET, async (err, user) => { // esto verifica el token. // la llamada retorna una funcion callback que es el tercer parametro, en esta se maneja la respuesta o el error.
+        if (err) return res.status(401).json({ message: "No esta autorizado, error al validar el token" });
+
+        const userFound = await User.findById(user.id);
+        if (!userFound) return res.status(401).json({ message: "No está autorizado, el token no corresponde a algun usuario" }); // existe un token pero no es un token valido.
+
+        return res.json({ // si paso por todas la validaciones anteriores entonces si existe un usuario y el token.
+            id: userFound._id,
+            username: userFound.username,
+            email: userFound.email
+        });
+    });
+}

@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
-import { registerRequest, loginRequest } from "../../api/auth";
+import {
+  registerRequest,
+  loginRequest,
+  verifyTokenRequest,
+} from "../../api/auth";
+import Cookies from "js-cookie"; // Permite leer las cookies
 
 export const AuthContext = createContext();
 
@@ -17,6 +22,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Este es el usuario que podra usarse dentro de todo el contexto. Cuando ejecutemos un register o un login el setUser sera modificado
   const [isAuthenticated, setIsAuthenticated] = useState(false); // con esta variable de estado validamos la autenticacion
   const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const signup = async (user) => {
     try {
@@ -35,6 +41,7 @@ export const AuthProvider = ({ children }) => {
       const res = await loginRequest(user);
       console.log(res);
       setIsAuthenticated(true);
+      setUser(res.data); // establece en la variable de estado lo que vino en la respuesta en el data.
     } catch (error) {
       console.log(error);
       if (Array.isArray(error.response.data)) {
@@ -56,12 +63,55 @@ export const AuthProvider = ({ children }) => {
     }
   }, [errors]);
 
+  //   useEffect(() => {
+  //     const cookies = Cookies.get(); // obtiene las cookies para leerlas
+  //     // console.log("cookies:", cookies);
+  //     if (cookies.token) {
+  //       // si existe el elemento token en las cookies
+  //         // console.log(cookies.token);
+  //     }
+  //   }, []);
+
+  useEffect(() => {
+    async function checkLogin() {
+      const cookies = Cookies.get(); // obtiene las cookies para leerlas
+      // si existe el elemento token en las cookies hace el llamado axios
+      if (cookies.token) {
+        try {
+          const res = await verifyTokenRequest(cookies.token); // llamado axios
+          console.log(res);
+          // si la respuesta trae los datos del usuario es porque si existe en la base de datos
+          if (!res.data) {
+            // si la respuesta no trae la data pasa la autenticacion a false.
+            setIsAuthenticated(false);
+            setLoading(false);
+          } else {
+            // si la respuesta trae la data la establece para que sea accesible al contexto.
+            setLoading(false);
+            setIsAuthenticated(true);
+            setUser(res.data); // si la respuesta trae los datos del usuario es porque si existe en la base de datos
+          }
+        } catch (error) {
+          setLoading(false);
+          setIsAuthenticated(false);
+          setUser(null);
+        }
+      } else {
+        setIsAuthenticated(false);
+        setLoading(false);
+        return setUser(null);
+      }
+    }
+    checkLogin();
+  }, []);
+
   // en este valor de value podemos poner cualquier cosa, array, string, num
   return (
     <AuthContext.Provider
       value={{
         signup,
         signin,
+        loading,
         user,
         isAuthenticated,
         errors,

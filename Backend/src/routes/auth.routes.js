@@ -4,7 +4,7 @@ import {
     logout,
     register,
     profile,
-    // verifyToken,
+    verifyToken,
 } from "../controllers/auth.controller.js";
 import { authRequired } from '../middlewares/validateToken.js'
 import { validateSchema } from "../middlewares/validator.middleware.js";
@@ -16,6 +16,7 @@ const router = Router();
 router.post("/register", validateSchema(registerSchema), register); // antes de pasar a la ruta se ejecuta el middleware validateSchema que compara el schema de zod con el req.body del frontend.
 router.post("/login", validateSchema(loginSchema), login);
 router.post("/logout", logout);
+router.get("/verify", verifyToken); //*PARA CADA RUTA QUE SE QUIERA PROTEGER SOLO PONER EL authRequired
 router.get("/profile", authRequired, profile); //*PARA CADA RUTA QUE SE QUIERA PROTEGER SOLO PONER EL authRequired
 
 
