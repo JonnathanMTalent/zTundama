@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import "../styles/horarios.css";
 import { useCitas } from "../context/CitasContext";
 
-function AgendaCitas() {
+function GenerarCitas() {
   const { citas, createCita } = useCitas();
 
   console.log(
@@ -87,7 +87,7 @@ function AgendaCitas() {
       <a name="arriba"></a>
       <header>
         <center>
-          <h1>Agenda de Citas</h1>
+          <h1>Generar Citas</h1>
         </center>
       </header>
       <br />
@@ -180,4 +180,4 @@ function AgendaCitas() {
   );
 }
 
-export default AgendaCitas;
+export default GenerarCitas;

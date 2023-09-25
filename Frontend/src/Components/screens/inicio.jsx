@@ -32,8 +32,8 @@ function Inicio() {
               Contacto
             </Link>
 
-            <Link className="btn btn-info" to={"/crudApi"}>
-              Administrar citas
+            <Link className="btn btn-info" to={"/generarCitas"}>
+              Generar citas
             </Link>
           </center>
         </nav>
