@@ -24,6 +24,7 @@ h1 {
   transform: translate(-50%, -50%);
   box-sizing: border-box;
   padding: 70px 30px;
+  margin-top: 10%;
 }
 
 .login-box h1 {
@@ -147,12 +148,13 @@ h1 {
     height: 100%;
     background: rgba(140, 205, 248, 0.429);
     color: #000000;
-    top: 100%;
+    /* top: 100%; */
     left: 10rem;
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 10px;
+    margin-top: 15%;
   }
 
   .panel-derecho {
@@ -187,12 +189,13 @@ h1 {
     height: 100%;
     background: rgba(140, 205, 248, 0.429);
     color: #000000;
-    top: 100%;
+    /* top: 100%; */
     left: 7rem;
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 10px;
+    margin-top: 20%;
   }
 
   .panel-derecho {
@@ -206,4 +209,10 @@ h1 {
   }
 
   /* termina el media screen de 400 px */
+}
+
+@media screen and (max-width: 380px) {
+  .login-box {
+    margin-top: 40%;
+  }
 }

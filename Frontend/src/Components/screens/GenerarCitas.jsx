@@ -3,13 +3,21 @@ import { Outlet, Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import "../styles/horarios.css";
 import { useCitas } from "../context/CitasContext";
+import { useNavigate } from "react-router-dom";
 
 function GenerarCitas() {
   const { citas, createCita } = useCitas();
+  const navigate = useNavigate();
 
   console.log(
     `cita del contexto: ${citas} ... funcionCreateTasks ${createCita()}`
   );
+
+  const onSubmit = handleSubmit((data) => {
+    // console.log(data);
+    createCita(data); // estamos creando la tarea en la base de datos de mongo
+    navigate("/citas");
+  });
 
   useEffect(() => {
     // Obtener la tabla y sus celdas

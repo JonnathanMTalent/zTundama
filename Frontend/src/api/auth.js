@@ -11,3 +11,5 @@ export const registerRequest = user => axios.post(`/register`, user); // quitamo
 export const loginRequest = user => axios.post(`/login`, user);
 
 export const verifyTokenRequest = () => axios.get('/verify') // permite verificar el token para saber si ya esta autenticado.
+
+// export const logoutRequest=()=>axios.get ('/logout') 

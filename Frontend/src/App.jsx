@@ -21,6 +21,8 @@ import TasksPage from "./Components/screens/TasksPage.jsx";
 import CrudApi from "./Components/crud/CrudApi";
 import { TaskProvider } from "./Components/context/TasksContext.jsx";
 import { CitaProvider } from "./Components/context/CitasContext.jsx";
+import NavbarBootstrap from "./Components/NavbarBootstrap.jsx";
+import Navbar from "./Components/Navbar.jsx";
 
 // el AuthProvider es el contexto.
 const App = () => {
@@ -30,26 +32,29 @@ const App = () => {
         <TaskProvider>
           <CitaProvider>
             <Router>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/registro" element={<RegistroForm />} />
-                <Route path="/login" element={<LoginForm />} />
-                <Route path="/acercade" element={<Acercade />} />
-                <Route path="/servicios" element={<Servicios />} />
-                <Route path="/contactForm" element={<ContactForm />} />
-                <Route element={<ProtectedRoute />}>
-                  <Route path="/agendaCitas" element={<AgendaCitas />} />
-                  <Route path="/generarCitas" element={<GenerarCitas />} />
-                  <Route path="/cuentaUsuario" element={<CuentaUsuario />} />
-                  <Route path="/inicio" element={<Inicio />} />
-                  <Route path="/editarCitas" element={<EditarCitas />} />
-                  <Route path="/crudApi" element={<CrudApi />} />
-                  <Route path="/tasks" element={<TasksPage />} />
-                  <Route path="/add-task" element={<TaskFormPage />} />
-                  <Route path="/tasks/:id" element={<TaskFormPage />} />
-                  <Route path="/profile" element={<h1>Profile</h1>} />
-                </Route>
-              </Routes>
+              <main className="container">
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/registro" element={<RegistroForm />} />
+                  <Route path="/login" element={<LoginForm />} />
+                  <Route path="/acercade" element={<Acercade />} />
+                  <Route path="/servicios" element={<Servicios />} />
+                  <Route path="/contactForm" element={<ContactForm />} />
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="/agendaCitas" element={<AgendaCitas />} />
+                    <Route path="/generarCitas" element={<GenerarCitas />} />
+                    <Route path="/cuentaUsuario" element={<CuentaUsuario />} />
+                    <Route path="/inicio" element={<Inicio />} />
+                    <Route path="/editarCitas" element={<EditarCitas />} />
+                    <Route path="/crudApi" element={<CrudApi />} />
+                    <Route path="/tasks" element={<TasksPage />} />
+                    <Route path="/add-task" element={<TaskFormPage />} />
+                    <Route path="/tasks/:id" element={<TaskFormPage />} />
+                    <Route path="/profile" element={<h1>Profile</h1>} />
+                  </Route>
+                </Routes>
+              </main>
             </Router>
           </CitaProvider>
         </TaskProvider>

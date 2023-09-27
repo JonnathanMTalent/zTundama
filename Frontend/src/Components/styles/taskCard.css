@@ -1,0 +1,45 @@
+.divCard {
+  background-color: rgba(44, 121, 204, 0.478);
+  color: white;
+  padding: 1rem 1rem;
+  margin: 1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+}
+
+h1 {
+  font-size: 1rem;
+  color: white;
+}
+
+p {
+  font-size: 1rem;
+}
+
+header {
+  display: block;
+  justify-items: center;
+  border-radius: 0.5rem;
+  height: auto;
+  background-color: rgba(44, 121, 204, 0.478);
+  align-items: flex-end;
+}
+
+.divBoton {
+  display: flex;
+  align-items: flex-end;
+}
+
+.botonCard {
+  background-color: rgba(25, 59, 181, 0.764);
+  color: white;
+  font-size: 1rem;
+  border-radius: 1rem;
+  margin: 2px;
+  text-align: center;
+}
+
+.link {
+  margin-left: 0px;
+  color: white;
+}

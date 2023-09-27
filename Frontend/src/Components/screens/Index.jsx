@@ -7,11 +7,11 @@ const Index = () => {
   return (
     <div>
       <a name="arriba"></a>
-      <header>
+      {/* <header>
         <center>
           <h1>Bienvenid@ a Tundama</h1>
         </center>
-      </header>
+      </header> */}
       <br />
       <br />
       <br />
