@@ -75,7 +75,14 @@ function TaskFormPage() {
     if (params.id) {
       // si existe un id en el parametro de la url entonces estamos editando.
       //   updateTask(params.id, data);
-      updateTask(params.id, dataValid);
+
+      if (!data.title || !data.description)
+        return alert("No puede haber campos vacios.");
+      if (!data.date)
+        confirma = confirm(
+          "Aceptar:Se establecerá la fecha actual como fecha de la tarea. Cancelar:puede cambiarla en la opcion Fecha."
+        );
+      if (confirma || data.date) updateTask(params.id, dataValid); // estamos actualizando la tarea en la base de datos de mongo
     } else {
       // console.log(data);
       //   createTask(data); // estamos creando la tarea en la base de datos de mongo
@@ -85,9 +92,9 @@ function TaskFormPage() {
         confirma = confirm(
           "Aceptar:Se establecerá la fecha actual como fecha de la tarea. Cancelar:puede cambiarla en la opcion Fecha."
         );
-      if (confirma) createTask(dataValid); // estamos creando la tarea en la base de datos de mongo
+      if (confirma || data.date) createTask(dataValid); // estamos creando la tarea en la base de datos de mongo
     }
-    if (confirma) navigate("/tasks"); //   navigate("/tasks"); // lineas antes de el if-else
+    if (data.date || confirma) navigate("/tasks"); //   navigate("/tasks"); // lineas antes de el if-else
   });
 
   return (

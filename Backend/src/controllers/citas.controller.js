@@ -1,5 +1,6 @@
 import Cita from "../models/cita.model.js";
 
+
 export const getCitas = async (req, res) => {
     try {
         const citas = await Cita.find({ user: req.user.id }).populate("user"); // aqui es donde usamos el id del usuario AUTENTICADO para traer solo sus tareas, El .populate trae la info del usuario tambien

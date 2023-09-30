@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.routes.js';
 import taskRoutes from './routes/tasks.routes.js';
 import citaRoutes from './routes/citas.routes.js';
+import citasGeneralRoutes from './routes/citasGeneral.routes.js';
 import cors from 'cors';
 
 const app = express(); // es basicamente el servidor
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use("/api", authRoutes);// asi se modifica la url// app.use(authRoutes); asi cuando api se pone desde auth.routes.js
 app.use("/api", taskRoutes);
 app.use("/api", citaRoutes);
+app.use("/api", citasGeneralRoutes);
 
 
 export default app;

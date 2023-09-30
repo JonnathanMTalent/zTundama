@@ -4,10 +4,11 @@ import { useAuth } from "../Components/context/AuthContext";
 
 function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
+  //   console.log("El id del usuario es:", user.username, user.id);
 
   return (
     <nav className="navbar">
-      <Link to={isAuthenticated ? "/tasks" : "/registro"}>
+      <Link to={isAuthenticated ? "/inicio" : "/registro"}>
         {/* <Link to="/"> */}
         {isAuthenticated ? (
           <h1 className="navh1">Bienvenido {user.username}</h1>
@@ -19,14 +20,18 @@ function Navbar() {
         )}
       </Link>
       <ul>
+        {isAuthenticated && user.username == "jonnathan" && (
+          <li>
+            <Link to="/generarCitasGeneral">Generar cita</Link>
+          </li>
+        )}
         {isAuthenticated ? (
           <>
-            {/* <li>Bienvenido {user.username}</li> */}
             <li>
-              <Link to="/add-task">Nueva tarea</Link>
+              <Link to="/citasGeneral">tomar cita </Link>
             </li>
             <li>
-              <Link to="/tasks">Tareas</Link>
+              <Link to="/citasGeneralUser">Mis citas </Link>
             </li>
             <li>
               <Link
