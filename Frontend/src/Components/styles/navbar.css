@@ -1,12 +1,14 @@
 .navbar {
   width: 100%;
   margin: 3px;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 5px;
   border-radius: 10px;
   color: white;
-  background-color: rgba(140, 205, 248, 0.674);
+  /* background-color: rgba(140, 205, 248, 0.674); */
   height: 5%;
+  background-size: 100%;
+  display: flex;
 }
 
 .navh1 {
@@ -54,8 +56,8 @@ ul {
   margin-left: 2em;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 980px) {
   .navbar {
-    /* display: none; */
+    display: block;
   }
 }

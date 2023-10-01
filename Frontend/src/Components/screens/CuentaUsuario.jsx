@@ -17,8 +17,8 @@ function CuentaUsuario() {
     tabla.rows[1].cells[1].innerText = datos.apellidos;
     tabla.rows[1].cells[2].innerText = datos.cedula;
     tabla.rows[1].cells[3].innerText = datos.fecha;
-    tabla.rows[1].cells[4].innerText = datos.correo;
-    tabla.rows[1].cells[5].innerText = datos.usuario;
+    tabla.rows[1].cells[4].innerText = datos.email;
+    tabla.rows[1].cells[5].innerText = datos.username;
     tabla.rows[1].cells[6].innerText = datos.celular;
 
     cambiarContrasena.addEventListener("click", function () {
@@ -87,14 +87,14 @@ function CuentaUsuario() {
       <center>
         <nav>
           <center>
-            <Link className="btn btn-info" to={"/agendaCitas"}>
+            <Link className="btn btn-info" to={"/citasGeneral"}>
               Agendar cita
+            </Link>
+            <Link className="btn btn-info" to={"/citasGeneralUser"}>
+              Cancelar cita
             </Link>
             <Link className="btn btn-info" to={"/servicios"}>
               Servicios
-            </Link>
-            <Link className="btn btn-info" to={"/registro"}>
-              Actualizar datos
             </Link>
             <Link className="btn btn-info" to={"/contactForm"}>
               Contacto

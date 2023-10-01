@@ -18,10 +18,10 @@ function Inicio() {
       <center>
         <nav>
           <center>
-            <Link className="btn btn-info" to={"/editarCitas"}>
+            <Link className="btn btn-info" to={"/citasGeneralUser"}>
               Cancelar Citas
             </Link>
-            <Link className="btn btn-info" to={"/agendaCitas"}>
+            <Link className="btn btn-info" to={"/citasGeneral"}>
               Agendar citas
             </Link>
 
@@ -32,8 +32,8 @@ function Inicio() {
               Contacto
             </Link>
 
-            <Link className="btn btn-info" to={"/generarCitas"}>
-              Generar citas
+            <Link className="btn btn-info" to={"/servicios"}>
+              Servicios
             </Link>
           </center>
         </nav>

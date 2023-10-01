@@ -26,8 +26,8 @@ import CrudApi from "./Components/crud/CrudApi";
 import { TaskProvider } from "./Components/context/TasksContext.jsx";
 import { CitaProvider } from "./Components/context/CitasContext.jsx";
 import { CitaGeneralProvider } from "./Components/context/CitasGeneralContext.jsx";
-// import NavbarBootstrap from "./Components/NavbarBootstrap.jsx";
-import Navbar from "./Components/Navbar.jsx";
+import NavbarBootstrap from "./Components/NavbarBootstrap.jsx";
+// import Navbarm from "./Components/Navbarm.jsx";
 
 // el AuthProvider es el contexto.
 const App = () => {
@@ -39,7 +39,7 @@ const App = () => {
             <CitaGeneralProvider>
               <Router>
                 <main className="container">
-                  <Navbar />
+                  <NavbarBootstrap />
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/registro" element={<RegistroForm />} />

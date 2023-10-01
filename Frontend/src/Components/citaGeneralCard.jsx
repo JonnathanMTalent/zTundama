@@ -11,7 +11,7 @@ function CitaGeneralCard({ citaGeneral }) {
   return (
     <div className="divCard">
       <header>
-        <h1>Doctor: {citaGeneral.doctor}</h1>
+        <h1>Médico: {citaGeneral.doctor}</h1>
       </header>
       <p>Hora y Lugar: {citaGeneral.hora}</p>
       {/* <p>{new Date(citaGeneral.date).toLocaleDateString()}</p> */}

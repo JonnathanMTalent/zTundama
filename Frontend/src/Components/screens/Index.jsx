@@ -36,9 +36,6 @@ const Index = () => {
             <Link className="btn btn-info" to={"/contactForm"}>
               Contactanos
             </Link>
-            <Link className="btn btn-info" to={"/generarCitas"}>
-              Generar citas
-            </Link>
           </center>
         </nav>
       </center>

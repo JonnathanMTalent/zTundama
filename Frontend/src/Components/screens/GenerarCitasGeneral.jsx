@@ -102,13 +102,13 @@ function GenerarCitasGeneral() {
     <body>
       <div className="div1">
         <form onSubmit={onSubmit}>
-          <label htmlFor="doctor">Nombre del doctor:</label>
+          <label htmlFor="doctor">Nombre del Médico:</label>
           <input
             type="text"
             {...register("doctor")}
             className=""
             autoFocus
-            placeholder="Doctor"
+            placeholder="Nombre del Médico:"
           />
           <label htmlFor="hora">Horario y lugar de la citaGeneral:</label>
           <textarea
@@ -117,7 +117,7 @@ function GenerarCitasGeneral() {
             placeholder="hh-mm-am---> Ciudad, Barrio, ips"
             {...register("hora")}
           ></textarea>
-          <label htmlFor="fecha">Fecha de la citaGeneral:</label>
+          <label htmlFor="fecha">Fecha de la cita:</label>
           <input type="date" {...register("fecha")} />
           <button className="guardar">Guardar</button>
         </form>
