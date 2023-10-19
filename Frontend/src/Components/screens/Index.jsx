@@ -50,7 +50,7 @@ const Index = () => {
       <footer>
         <center>
           <p>
-            <h5>Página en Construccion</h5>
+            <h5>Administracion de citas de salud Tundama</h5>
           </p>
         </center>
       </footer>

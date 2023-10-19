@@ -11,19 +11,19 @@ const Servicios = () => {
       <div className="formu">
         <div className="formu__form">
           <div className="servicio">
-            <Link to={"/registro"}>Servicio 1</Link>
+            <Link to={"/login"}>Generacion de citas</Link>
           </div>
           <div className="servicio">
-            <Link to={"/registro"}>Servicio 2</Link>
+            <Link to={"/registro"}>Revision de citas</Link>
           </div>
           <div className="servicio">
-            <Link to={"/registro"}>Servicio 3</Link>
+            <Link to={"/registro"}>Tomar citas</Link>
           </div>
           <div className="servicio">
-            <Link to={"/registro"}>Servicio 4</Link>
+            <Link to={"/registro"}>Cancelar citas</Link>
           </div>
           <div className="servicio">
-            <Link to={"/registro"}>Servicio 5</Link>
+            <Link to={"/registro"}>Envio de informacion</Link>
           </div>
           <div className="servicio">
             <Link to={"/login"}>Ingresar Usuario: Login</Link>

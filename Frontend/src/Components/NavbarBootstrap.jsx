@@ -14,7 +14,7 @@ function NavScrollExample() {
   return (
     <Navbar expand="lg" className="bg-body-black navbar">
       <Container fluid>
-        <Navbar.Brand href="/inicio" className="text-white">
+        <Navbar.Brand href="/registro" className="text-white">
           {isAuthenticated ? (
             <h1 className="navh1">Bienvenido {user.username}</h1>
           ) : (

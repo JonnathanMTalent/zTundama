@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 
 function Acercade() {
   return (
@@ -6,12 +6,17 @@ function Acercade() {
       <center>
         <h2> Acerca de nosotros</h2>
       </center>
+      <hr />
+      <hr />
+      <hr />
+      <hr />
       <div>
         <iframe
           id="video1"
           src="https://www.youtube.com/embed/Rhy4UmunRNQ"
-          width="560"
-          height="315"
+          //   width="560"
+          height="500"
+          width="100%"
           frameBorder="0"
           allowFullScreen="allowfullscreen"
         ></iframe>
